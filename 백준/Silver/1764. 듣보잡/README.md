@@ -28,3 +28,44 @@
 
  <p>듣보잡의 수와 그 명단을 사전순으로 출력한다.</p>
 
+### 문제 풀이
+
+'''
+처음 입력값을 명단이니까 값을 하나하나로 받아서 리스트에 담음
+
+n, m = map(int, input().split())
+all_li = n + m
+name_li = []
+for i in range(all_li):
+    name = input()
+    name_li.append(name)
+
+duplicates = [name for name in name_li if name_li.count(name) > 1]
+duplicates = list(set(duplicates)) 
+
+print(len(duplicates))
+for name in duplicates:
+    print(name)
+'''    
+결과는 시간초과 및 틀림. 
+
+문제를 다시보니까 입력값을 2개 즉 듣도 못한 사람의 명단과, 보도 못한 사람의 명단이 주어질 때
+이런식으로 나옴
+그래서 각 입력값을 받고 중복값을 찾음
+'''
+n, m = map(int, input().split())
+
+a = set()
+for i in range(n):
+    a.add(input())
+
+b = set()
+for i in range(m):
+    b.add(input())
+
+res = sorted(list(a & b))
+
+print(len(res))
+for i in res:
+    print(i)
+'''
