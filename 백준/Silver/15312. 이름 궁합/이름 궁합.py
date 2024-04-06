@@ -1,16 +1,20 @@
-A = input()
-B = input()
-alpha = [3, 2, 1, 2, 3, 3, 2, 3, 3, 2, 2, 1, 2, 2, 1, 2, 2, 2, 1, 2, 1, 1, 1, 2, 2, 1]
-dp = [[0 for i in range(2*len(A))] for j in range(2*len(A)-1)]
+hint = [3, 2, 1, 2, 3, 3, 2, 3, 3, 2, 2, 1, 2, 2, 1, 2, 2, 2, 1, 2, 1, 1, 1, 2, 2, 1]
 
-for i in range(len(A)+1):
-    if i != len(A): 
-        dp[0][i*2] = alpha[ord(A[i])-65]
-    if i != 0: 
-        dp[0][i*2-1] = alpha[ord(B[i-1])-65]
+a = input()
+b = input()
+arr = []
 
-for i in range(1, 2*len(A)-1):
-    for j in range(2*len(A)-i):
-        dp[i][j] = int(str(dp[i-1][j] + dp[i-1][j+1])[-1]) #
+for i in range(len(a)):
+	arr.append(hint[ord(a[i]) - 65])
+	arr.append(hint[ord(b[i]) - 65])
 
-print(dp[-1][0], dp[-1][1], sep='')
+temp = []
+
+while len(arr) != 2:
+	for idx in range(1, len(arr)):
+		temp.append((arr[idx] + arr[idx-1]) % 10)
+
+	arr = temp
+	temp = []
+
+print(f"{arr[0]}{arr[-1]}")
